@@ -14,6 +14,7 @@ const generateUtils = require("ide-generate-service/template/generateUtils");
 const parameterUtils = require("ide-generate-service/template/parameterUtils");
 
 exports.generate = function (model, parameters) {
+    model = JSON.parse(model).model;
     let templateSources = exports.getTemplate(parameters).sources;
     parameterUtils.process(model, parameters)
     return generateUtils.generateFiles(model, parameters, templateSources);
