@@ -1,7 +1,11 @@
 {
 	"group": "${projectName}-feed",
 #if($feedUrl)
+#if($feedSchedule)
+	"expression": "${feedSchedule}",
+#else
 	"expression": "0/10 * * * * ?",
+#end
 #else
 	"expression": "0 0 0 1 * ? *",
 #end

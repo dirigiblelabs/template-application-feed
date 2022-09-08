@@ -27,13 +27,13 @@ exports.getTemplate = function (parameters) {
         action: "generate",
         rename: "gen/feed/{{perspectiveName}}/{{name}}FeedSynchronizer.js",
         engine: "velocity",
-        collection: "models"
+        collection: "feedModels"
     }, {
         location: "/template-application-feed/feed/entityFeed.job.template",
         action: "generate",
         rename: "gen/feed/{{perspectiveName}}/{{name}}Feed.job",
         engine: "velocity",
-        collection: "models"
+        collection: "feedModels"
     }];
     templateSources = templateSources.concat(daoTemplate.sources);
 
