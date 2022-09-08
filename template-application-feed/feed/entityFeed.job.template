@@ -1,9 +1,10 @@
 {
+	"group": "${projectName}-feed",
 #if($feedUrl)
 	"expression": "0/10 * * * * ?",
 #else
 	"expression": "0 0 0 1 * ? *",
 #end
-	"handler": "${projectName}/gen/feed/${perspectiveName}/${fileName}FeedSynchronizer.js",
+	"handler": "${projectName}/gen/feed/${perspectiveName}/${name}FeedSynchronizer.js",
 	"description": "${name}FeedSynchronizer Job"
 }

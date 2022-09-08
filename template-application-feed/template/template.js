@@ -9,7 +9,15 @@
  *   SAP - initial API and implementation
  */
 
-var daoTemplateManager = require("template-application-dao/template/template");
+const daoTemplateManager = require("template-application-dao/template/template");
+const generateUtils = require("ide-generate-service/template/generateUtils");
+const parameterUtils = require("ide-generate-service/template/parameterUtils");
+
+exports.generate = function (model, parameters) {
+    let templateSources = exports.getTemplate(parameters).sources;
+    parameterUtils.process(model, parameters)
+    return generateUtils.generateFiles(model, parameters, templateSources);
+};
 
 exports.getTemplate = function (parameters) {
     let daoTemplate = daoTemplateManager.getTemplate(parameters);
@@ -17,13 +25,13 @@ exports.getTemplate = function (parameters) {
     let templateSources = [{
         location: "/template-application-feed/feed/entityFeedSynchronizer.js.template",
         action: "generate",
-        rename: "gen/feed/{{perspectiveName}}/{{fileName}}FeedSynchronizer.js",
+        rename: "gen/feed/{{perspectiveName}}/{{name}}FeedSynchronizer.js",
         engine: "velocity",
         collection: "models"
     }, {
         location: "/template-application-feed/feed/entityFeed.job.template",
         action: "generate",
-        rename: "gen/feed/{{perspectiveName}}/{{fileName}}Feed.job",
+        rename: "gen/feed/{{perspectiveName}}/{{name}}Feed.job",
         engine: "velocity",
         collection: "models"
     }];
